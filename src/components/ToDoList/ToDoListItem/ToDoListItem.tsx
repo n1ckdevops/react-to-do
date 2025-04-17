@@ -1,10 +1,11 @@
+import styles from './ToDoListItem.module.scss'
 export const ToDoListItem = () => {
   return (
-    <li className="todo-list-item__wrapper">
+    <li className={styles.item}>
       <span>Первая задача</span>
-      <div className="todo-list-item__buttons">
-        <button className="btn-trash"></button>
-        <button className="btn-check"></button>
+      <div className={styles.btns}>
+        <button className={`${styles.btn} ${styles.trash}`}></button>
+        <button className={`${styles.btn} ${styles.check}`}></button>
       </div>
     </li>
   )

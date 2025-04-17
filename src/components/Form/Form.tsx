@@ -1,10 +1,12 @@
+import styles from './Form.module.scss'
+
 export const Form = () => {
   return (
-    <div className="form-wrapper">
+    <div className={styles.form}>
       <form action="#">
         <label>
-          <input type="text" />
-          <button></button>
+          <input type="text" className={styles.input} />
+          <button className={styles.button}></button>
         </label>
       </form>
     </div>
