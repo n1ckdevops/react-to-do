@@ -1,20 +1,55 @@
 import { ToDoListItem } from "./ToDoListItem/ToDoListItem"
 import styles from './ToDoList.module.scss'
+import { ToDo } from "../../models/todo-item"
+
+
 export const ToDoList = () => {
+  const todos: ToDo[] = [{
+    id: 0,
+    text: 'Первая задача',
+    isDone: false
+  },
+
+  {
+    id: 1,
+    text: 'Вторая задача',
+    isDone: true
+  },
+  {
+    id: 2,
+    text: 'Третья задача',
+    isDone: false
+  },
+  {
+    id: 3,
+    text: 'Четвертая задача',
+    isDone: true
+  }];
+
+
   return (
     <div className={styles.container}>
       <ul className={`${styles.list} ${styles.failed}`}>
-        <ToDoListItem />
+        {
+          todos
+            .filter((item) => !item.isDone)
+            .map((item, index) => {
+              return (
+                <ToDoListItem key={index} toDoItem={item} />
+              );
+            })
+        }
       </ul>
       <ul className={`${styles.list} ${styles.completed}`}>
-        <ToDoListItem />
-        {/* <li className="todo-list-item__wrapper">
-          <span>Вторая задача</span>
-          <div className="todo-list-item__buttons">
-            <button className="btn-trash"></button>
-            <button className="btn-uncheck"></button>
-          </div>
-        </li> */}
+        {
+          todos
+            .filter((item) => item.isDone)
+            .map((item, index) => {
+              return (
+                <ToDoListItem key={index} toDoItem={item} />
+              );
+            })
+        }
       </ul>
     </div>
   )
