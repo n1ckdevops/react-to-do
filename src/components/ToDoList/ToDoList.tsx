@@ -3,53 +3,35 @@ import styles from './ToDoList.module.scss'
 import { ToDo } from "../../models/todo-item"
 
 
-export const ToDoList = () => {
-  const todos: ToDo[] = [{
-    id: 0,
-    text: 'Первая задача',
-    isDone: false
-  },
+export const ToDoList = (props: { todos: ToDo[] }) => {
 
-  {
-    id: 1,
-    text: 'Вторая задача',
-    isDone: true
-  },
-  {
-    id: 2,
-    text: 'Третья задача',
-    isDone: false
-  },
-  {
-    id: 3,
-    text: 'Четвертая задача',
-    isDone: true
-  }];
+  const isChecked = () => {
+    return props.todos
+      .filter((item) => item.isDone)
+      .map((item, index) => {
+        return (
+          <ToDoListItem key={index} toDoItem={item} />
+        );
+      })
 
+  }
+  const isUnchecked = () => {
+    return props.todos
+      .filter((item) => !item.isDone)
+      .map((item, index) => {
+        return (
+          <ToDoListItem key={index} toDoItem={item} />
+        );
+      })
 
+  }
   return (
     <div className={styles.container}>
       <ul className={`${styles.list} ${styles.failed}`}>
-        {
-          todos
-            .filter((item) => !item.isDone)
-            .map((item, index) => {
-              return (
-                <ToDoListItem key={index} toDoItem={item} />
-              );
-            })
-        }
+        {isChecked()}
       </ul>
       <ul className={`${styles.list} ${styles.completed}`}>
-        {
-          todos
-            .filter((item) => item.isDone)
-            .map((item, index) => {
-              return (
-                <ToDoListItem key={index} toDoItem={item} />
-              );
-            })
-        }
+        {isUnchecked()}
       </ul>
     </div>
   )
