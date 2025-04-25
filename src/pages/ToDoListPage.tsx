@@ -10,8 +10,9 @@ export const ToDoListPage = () => {
 
   const createNewToDo = (text: string) => {
     const newToDo: ToDo = {
-      text, isDone: false,
-      id: 0
+      id: Date.now(), // Уникальный идентификатор
+      text,
+      isDone: false,
     };
     setTodos([...todos, newToDo]);
   }

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './assets/scss/normalize.scss'
 import './assets/scss/style.scss'
 import { ToDoListPage } from './pages/ToDoListPage';
+import { ToastContainer } from 'react-toastify';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,5 +12,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ToDoListPage />
+    <ToastContainer />
   </React.StrictMode>
 );
