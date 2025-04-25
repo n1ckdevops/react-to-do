@@ -16,13 +16,26 @@ export const ToDoListPage = () => {
     setTodos([...todos, newToDo]);
   }
 
+  const updatedTodos = (toDoItem: ToDo) => {
+    const updated = todos.map(todo => {
+      if (todo.id === toDoItem.id) {
+        todo.isDone = !todo.isDone
+      }
+      return todo;
+    });
+    setTodos(updated);
+  }
 
+  const deleteTodos = (toDoItem: ToDo) => {
+    const deleted = todos.filter(todo => todo.id !== toDoItem.id);
+    setTodos(deleted);
+  }
 
   return (
     <>
       <Header />
       <Form createNewToDo={createNewToDo} />
-      <ToDoList todos={todos} />
+      <ToDoList todos={todos} updatedTodos={updatedTodos} deleteTodos={deleteTodos} />
     </>
   )
 }
