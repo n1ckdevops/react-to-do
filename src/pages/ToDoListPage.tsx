@@ -33,7 +33,6 @@ export const ToDoListPage = () => {
 
   return (
     <>
-
       <Form createNewToDo={createNewToDo} />
       <ToDoList todos={todos} updatedTodos={updatedTodos} deleteTodos={deleteTodos} />
     </>
