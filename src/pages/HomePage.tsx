@@ -1,5 +1,14 @@
-export const HomePage = () => {
+import { ListItem } from "../components/ListItem/ListItem"
+import { ToDo } from "../models/todo-item"
+
+export const HomePage = (props: { todos: ToDo[] }) => {
   return (
-    <h1>Home Page</h1>
+    <>
+      {props.todos.map((todo: ToDo, index: number) => {
+        return (
+          <ListItem key={index} todo={todo} />
+        )
+      })}
+    </>
   )
 }
