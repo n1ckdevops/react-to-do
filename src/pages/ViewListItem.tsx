@@ -7,7 +7,7 @@ interface ComponentProps {
   todos: ToDo[];
 }
 
-export const ItemDescription = ({ todos }: ComponentProps) => {
+export const ViewListItem = ({ todos }: ComponentProps) => {
   const { id } = useParams() // Получаем id из параметров маршрута
   const [todo, setTodo] = useState<ToDo>()
   const navigate = useNavigate() // navigate - это функция, которая позволяет программно изменять маршрут

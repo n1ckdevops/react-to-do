@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./layouts/Layout";
 import { NotFoundPage } from "./pages/404";
-import { HomePage } from "./pages/HomePage";
+import { ViewList } from "./pages/ViewList";
 import { ToDoListPage } from "./pages/ToDoListPage";
-import { ItemDescription } from "./pages/ItemDescription";
+import { ViewListItem } from "./pages/ViewListItem";
 import { ToDo } from "./models/todo-item";
 
 
@@ -40,25 +40,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage todos={todos} />
-      },
-      {
-        path: '/todo',
         element: <ToDoListPage />
       },
       {
-        path: '/list/',
-        children: [
-          {
-            path: ':id',
-            element: <ItemDescription todos={todos} />
-          }
-        ]
+        path: '/list',
+        element: <ViewList todos={todos} />,
+      },
+      {
+        path: '/list/:id',
+        element: <ViewListItem todos={todos} />
       }
     ]
   },
   {
     path: '*',
-    element: <NotFoundPage />
   }
 ], /*{ basename: '/app/' }*/)
