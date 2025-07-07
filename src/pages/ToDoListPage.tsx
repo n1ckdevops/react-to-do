@@ -1,40 +1,32 @@
-import { useState } from "react";
 import { Form } from "../components/Form/Form"
 import { ToDoList } from "../components/ToDoList/ToDoList"
 import { ToDo } from "../models/todo-item";
+import { RootState } from "../store";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { createAction, updateAction, deleteAction } from "../feature/todoList"; // Импортируем действие для создания новой задачи
 
 export const ToDoListPage = () => {
-  const [todos, setTodos] = useState<ToDo[]>([]);
-
+  const todoList = useSelector((state: RootState) => state.todoList.todos);  // Получаем список задач из Redux
+  const dispatch = useDispatch(); // Диспетчер для отправки действий в Redux
 
   const createNewToDo = (text: string) => {
-    const newToDo: ToDo = {
-      id: Date.now(), // Уникальный идентификатор
-      text,
-      isDone: false,
-    };
-    setTodos([...todos, newToDo]);
+    dispatch(createAction(text)); // Отправляем действие для создания новой задачи  
   }
 
   const updatedTodos = (toDoItem: ToDo) => {
-    const updated = todos.map(todo => {
-      if (todo.id === toDoItem.id) {
-        todo.isDone = !todo.isDone
-      }
-      return todo;
-    });
-    setTodos(updated);
+    dispatch(updateAction(toDoItem))
   }
 
   const deleteTodos = (toDoItem: ToDo) => {
-    const deleted = todos.filter(todo => todo.id !== toDoItem.id);
-    setTodos(deleted);
+    dispatch(deleteAction(toDoItem)) // Отправляем действие для удаления задачи
   }
 
   return (
     <>
       <Form createNewToDo={createNewToDo} />
-      <ToDoList todos={todos} updatedTodos={updatedTodos} deleteTodos={deleteTodos} />
+      <ToDoList todos={todoList} updatedTodos={updatedTodos} deleteTodos={deleteTodos} />
     </>
   )
 }
+

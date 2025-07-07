@@ -7,8 +7,8 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <NavLink to='/' className={getActiveClass}>Home</NavLink >
-        <NavLink to='/todo' className={getActiveClass}>To-Do List</NavLink >
+        <NavLink to='/' className={getActiveClass}>To-Do</NavLink >
+        <NavLink to='/list' className={getActiveClass}>List</NavLink >
       </div>
     </header>
   )
