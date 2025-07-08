@@ -33,7 +33,7 @@ export const ToDoListItem = (props: { toDoItem: ToDo, updatedTodos: Function, de
           className={`${styles.btn} ${props.toDoItem.isDone ? styles.check : styles.uncheck}`}
           onClick={() => {
             props.updatedTodos(props.toDoItem);
-            toast.info(`${props.toDoItem.isDone ? 'Задача выполнена!' : 'Задача не выполнена!'}`, {
+            toast.info(`${props.toDoItem.isDone ? 'Задача не выполнена!' : 'Задача выполнена!'}`, {
               position: "bottom-right",
               autoClose: 3000,
               hideProgressBar: false,

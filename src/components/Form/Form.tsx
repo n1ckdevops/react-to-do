@@ -1,13 +1,17 @@
-import { useState } from 'react';
 import styles from './Form.module.scss';
 import { Bounce, toast } from 'react-toastify';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { RootState } from '../../store';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { update } from '../../feature/form';
 
 export const Form = (props: { createNewToDo: Function }) => {
-  const [text, setText] = useState<string>('');
+  const inputForm = useSelector((state: RootState) => state.inputForm.value); // Состояние формы
+  const dispatch = useDispatch();
 
   const formSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Предотвращаем перезагрузку страницы
-    if (!text.trim()) {
+    if (!inputForm.trim()) {
       // Если текст пустой или состоит только из пробелов, ничего не делаем
       toast.error('Введите текст задачи!', {
         position: "bottom-right",
@@ -22,8 +26,8 @@ export const Form = (props: { createNewToDo: Function }) => {
       });
       return;
     }
-    props.createNewToDo(text); // Добавляем задачу
-    setText(''); // Очищаем поле ввода
+    props.createNewToDo(inputForm); // Добавляем задачу
+    dispatch(update('')); // Очищаем поле ввода
     toast.success('Задача добавлена!', {
       position: "bottom-right",
       autoClose: 3000,
@@ -42,11 +46,11 @@ export const Form = (props: { createNewToDo: Function }) => {
       <form action="#" onSubmit={formSubmit}>
         <label>
           <input
-            value={text}
+            value={inputForm}
             type="text"
             className={styles.input}
             onChange={(e) => {
-              setText(e.target.value);
+              dispatch(update(e.target.value));
             }}
           />
           <button className={styles.button} type="submit">
