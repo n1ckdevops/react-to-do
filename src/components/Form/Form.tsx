@@ -1,9 +1,11 @@
-import styles from './Form.module.scss';
 import { Bounce, toast } from 'react-toastify';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { RootState } from '../../store';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { update } from '../../feature/form';
+import { Button, FormBlock, Input, Label, Wrapper } from './Form.styled';
+import plusIcon from '../../assets/images/plus.png'
+
 
 export const Form = (props: { createNewToDo: Function }) => {
   const inputForm = useSelector((state: RootState) => state.inputForm.value); // Состояние формы
@@ -42,22 +44,19 @@ export const Form = (props: { createNewToDo: Function }) => {
   };
 
   return (
-    <div className={styles.form}>
-      <form action="#" onSubmit={formSubmit}>
-        <label>
-          <input
+    <Wrapper>
+      <FormBlock onSubmit={formSubmit}>
+        <Label>
+          <Input
             value={inputForm}
             type="text"
-            className={styles.input}
             onChange={(e) => {
               dispatch(update(e.target.value));
             }}
           />
-          <button className={styles.button} type="submit">
-
-          </button>
-        </label>
-      </form>
-    </div>
+          <Button icon={plusIcon} />
+        </Label>
+      </FormBlock>
+    </Wrapper >
   );
 };

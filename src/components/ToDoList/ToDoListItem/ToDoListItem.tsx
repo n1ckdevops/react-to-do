@@ -1,16 +1,18 @@
 import { ToDo } from '../../../models/todo-item'
-import styles from './ToDoListItem.module.scss'
 import { Bounce, toast } from 'react-toastify';
-
+import { Button, Buttons, Item, ItemText } from './ToDoListItem.styled';
+import checkIcon from '../../../assets/images/check.png'
+import uncheckIcon from '../../../assets/images/uncheck.png'
+import trashIcon from '../../../assets/images/trash.png'
 
 export const ToDoListItem = (props: { toDoItem: ToDo, updatedTodos: Function, deleteTodos: Function }) => {
 
   return (
-    <li className={styles.item}>
-      <span>{props.toDoItem.text}</span>
-      <div className={styles.btns}>
-        <button
-          className={`${styles.btn} ${styles.trash}`}
+    <Item>
+      <ItemText>{props.toDoItem.text}</ItemText>
+      <Buttons>
+        <Button
+          icon={trashIcon}
           onClick={() => {
             props.deleteTodos(props.toDoItem);
             toast.warn('Задача удалена!', {
@@ -26,11 +28,9 @@ export const ToDoListItem = (props: { toDoItem: ToDo, updatedTodos: Function, de
             });
           }}
         >
-        </button>
-
-
-        <button
-          className={`${styles.btn} ${props.toDoItem.isDone ? styles.check : styles.uncheck}`}
+        </Button>
+        <Button
+          icon={props.toDoItem.isDone ? checkIcon : uncheckIcon}
           onClick={() => {
             props.updatedTodos(props.toDoItem);
             toast.info(`${props.toDoItem.isDone ? 'Задача не выполнена!' : 'Задача выполнена!'}`, {
@@ -46,8 +46,8 @@ export const ToDoListItem = (props: { toDoItem: ToDo, updatedTodos: Function, de
             });
           }}
         >
-        </button>
-      </div>
-    </li>
+        </Button>
+      </Buttons>
+    </Item>
   )
 }
