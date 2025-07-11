@@ -29,4 +29,4 @@ export const router = createBrowserRouter([
   {
     path: '*',
   }
-], /*{ basename: '/app/' }*/)
+], { basename: '/react-to-do/' })
