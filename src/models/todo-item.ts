@@ -1,7 +1,7 @@
 /** @format */
 
 export interface ToDo {
-  id: number;
+  id: string;
   text: string;
   isDone: boolean;
 }

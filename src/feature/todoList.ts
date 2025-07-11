@@ -3,7 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ToDo } from "../models/todo-item";
-
+import { v4 as uuid } from "uuid";
 export interface ToDoState {
   // Интерфейс состояния ToDo, который содержит массив задач
   todos: ToDo[];
@@ -23,7 +23,7 @@ export const todoSlice = createSlice({
       // Создаем действие для добавления новой задачи
       const newToDo: ToDo = {
         // Создаем новый объект задачи
-        id: state.todos.length, // Используем длину массива как уникальный идентификатор
+        id: uuid(), // Используем uuid для генерации уникального идентификатора
         text: action.payload, // Получаем текст задачи из действия
         isDone: false, // Задача изначально не выполнена
       };

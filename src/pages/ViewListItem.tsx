@@ -12,7 +12,7 @@ export const ViewListItem = () => {
   const navigate = useNavigate() // navigate - это функция, которая позволяет программно изменять маршрут
   useEffect(() => {
     // включает в себя все жизненные циклы компонента - иниц, рендер и дестрой и тд
-    const searchTodos = todoList.find(todo => todo.id === Number(id))
+    const searchTodos = todoList.find(todo => todo.id === String(id))
     if (searchTodos) {
       setTodo(searchTodos)
     } else {
