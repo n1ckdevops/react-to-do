@@ -2,7 +2,7 @@
   "name": "to-do",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://n1ckdevops.github.io/todo",
+  "homepage": "https://n1ckdevops.github.io/react-to-do",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/dom": "^10.4.0",
